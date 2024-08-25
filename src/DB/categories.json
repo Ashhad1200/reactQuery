@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Active Wear - Men"
+    },
+    {
+      "id": 2,
+      "name": "Active Wear - Women"
+    },
+    {
+      "id": 3,
+      "name": "Mineral Water"
+    },
+    {
+      "id": 4,
+      "name": "Publications"
+    },
+    {
+      "id": 5,
+      "name": "Supplements"
+    }
+  ]
+}
