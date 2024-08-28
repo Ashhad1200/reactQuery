@@ -1,46 +1,60 @@
-import useProductsById from "../Api/crud";
-import { Row, Col } from "antd";
+// import { useState } from "react";
+import { Card, Row, Col, Spin, Alert, Button } from "antd";
+import useProducts from "../Api/crud";
 
 const Test = () => {
-  const { data, isLoading, isError } = useProductsById();
-  console.log(data, isLoading, isError);
+  // const [sortBy, setSortBy] = useState("name"); // Default sorting column
+  // const [order, setOrder] = useState("asc"); // Default sorting order
+  const { data, isLoading, isError } = useProducts(/*sortBy, order*/);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading products.</div>;
-  const style = {
-    background: "#abb2b9",
-    padding: "8px 0",
-    marginBottom: "10px",
-  };
+  if (isLoading) return <Spin size="large" />;
+  if (isError)
+    return (
+      <Alert
+        message="Error"
+        description="Error loading products."
+        type="error"
+      />
+    );
+
   return (
-    <ul>
-      {data && data ? (
-        data.map((product) => (
-          <Row gutter={24} key={product.id}>
-            <Col className="gutter-row" span={2}>
-              <div style={style}>{product.id}</div>
+    <>
+      {/* <div style={{ marginBottom: "20px" }}>
+        <Button onClick={() => setSortBy("name")} style={{ marginRight: "10px" }}>
+          Sort by Name
+        </Button>
+        <Button onClick={() => setSortBy("price")} style={{ marginRight: "10px" }}>
+          Sort by Price
+        </Button>
+        <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>
+          Toggle Order
+        </Button>
+      </div> */}
+      <Row gutter={24}>
+        {data && data.length > 0 ? (
+          data.map((product) => (
+            <Col className="gutter-row" span={8} key={product.id}>
+              <Card
+                title={product.name}
+                extra={<span>Price: ${product.price}</span>}
+                style={{ marginBottom: "20px" }}
+              >
+                <p>
+                  <strong>ID:</strong> {product.id}
+                </p>
+                <p>
+                  <strong>SKU:</strong> {product.sku}
+                </p>
+              </Card>
             </Col>
-            <Col className="gutter-row" span={2}>
-              <div style={style}>{product.id}</div>
-            </Col>
-            <Col className="gutter-row" span={2}>
-              <div style={style}>{product.id}</div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div style={style}>{product.name}</div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div style={style}>Price: ${product.price}</div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div style={style}>{product.sku}</div>
-            </Col>
-          </Row>
-        ))
-      ) : (
-        <p>No products found.</p>
-      )}
-    </ul>
+          ))
+        ) : (
+          <Col span={24}>
+            <p>No products found.</p>
+          </Col>
+        )}
+      </Row>
+    </>
   );
 };
 

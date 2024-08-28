@@ -1,19 +1,28 @@
 import { useCatagory, useCreateNewProduct } from "../Api/crud";
-import { Form, Input, InputNumber, Switch, Button, Select } from "antd";
+import {
+  Form,
+  Input,
+  InputNumber,
+  Switch,
+  Button,
+  Select,
+  message,
+  Spin,
+} from "antd";
 const { Option } = Select;
 
 const Edit = () => {
-  // Mutation hook for creating a new product
-  const { mutate } = useCreateNewProduct();
-
-  // State for form fields
   const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
+  const { mutate, error, isLoading } = useCreateNewProduct();
 
-  // Function to handle form submission
+  // Display an error message if the request fails
+  if (error) {
+    messageApi.error("An error occurred while creating the product.");
+  }
+
   const onFinish = (values) => {
-    // Create a new product with form values
     const data = {
-      id: values.id,
       sku: values.sku,
       name: values.name,
       description: values.description,
@@ -21,79 +30,105 @@ const Edit = () => {
       isAvailable: values.isAvailable,
       categoryId: values.categoryId,
     };
-
     // Call mutate function to create the new product
     mutate({ product: data });
   };
 
   const { data: categories } = useCatagory();
-  console.log(categories);
+
+  if (isLoading) return <Spin size="large" />;
+
   return (
-    <Form form={form} layout="vertical" onFinish={onFinish}>
-      <Form.Item
-        label="Product ID"
-        name="id"
-        rules={[{ required: true, message: "Please input the product ID!" }]}
+    <>
+      {contextHolder}
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+        autoComplete="off"
+        style={{ maxWidth: 600, margin: "0 auto" }}
       >
-        <InputNumber min={1} />
-      </Form.Item>
+        <Form.Item
+          label="SKU"
+          name="sku"
+          rules={[{ required: true, message: "Please input the SKU!" }]}
+        >
+          <Input placeholder="Enter SKU" aria-label="SKU" />
+        </Form.Item>
 
-      <Form.Item
-        label="SKU"
-        name="sku"
-        rules={[{ required: true, message: "Please input the SKU!" }]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Name"
+          name="name"
+          rules={[
+            { required: true, message: "Please input the product name!" },
+          ]}
+        >
+          <Input placeholder="Enter product name" aria-label="Product Name" />
+        </Form.Item>
 
-      <Form.Item
-        label="Name"
-        name="name"
-        rules={[{ required: true, message: "Please input the product name!" }]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Description"
+          name="description"
+          rules={[
+            { max: 255, message: "Description cannot exceed 255 characters!" },
+          ]}
+        >
+          <Input.TextArea
+            placeholder="Enter product description"
+            aria-label="Description"
+            autoSize={{ minRows: 3 }}
+          />
+        </Form.Item>
 
-      <Form.Item label="Description" name="description">
-        <Input.TextArea />
-      </Form.Item>
+        <Form.Item
+          label="Price"
+          name="price"
+          rules={[{ required: true, message: "Please input the price!" }]}
+        >
+          <InputNumber
+            min={0}
+            formatter={(value) => `$ ${value}`}
+            parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+            placeholder="Enter price"
+            aria-label="Price"
+            style={{ width: "100%" }}
+          />
+        </Form.Item>
 
-      <Form.Item
-        label="Price"
-        name="price"
-        rules={[{ required: true, message: "Please input the price!" }]}
-      >
-        <InputNumber min={0} formatter={(value) => `$ ${value}`} />
-      </Form.Item>
+        <Form.Item
+          label="Availability"
+          name="isAvailable"
+          valuePropName="checked"
+          initialValue={true}
+        >
+          <Switch aria-label="Availability" />
+        </Form.Item>
 
-      <Form.Item
-        label="Availability"
-        name="isAvailable"
-        valuePropName="checked"
-      >
-        <Switch />
-      </Form.Item>
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[{ required: true, message: "Please select a category!" }]}
+        >
+          <Select
+            placeholder="Select a category"
+            aria-label="Category"
+            allowClear
+          >
+            {categories?.map((category) => (
+              <Option key={category.id} value={category.id}>
+                {category.name}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
 
-      <Form.Item
-        label="Category"
-        name="categoryId"
-        rules={[{ required: true, message: "Please select a category!" }]}
-      >
-        <Select>
-          {categories?.map((category) => (
-            <Option key={category.id} value={category.id}>
-              {category.name}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
-
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Create Product
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Create Product
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 

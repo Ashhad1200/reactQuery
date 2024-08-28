@@ -1,11 +1,11 @@
 // import "./App.css";
-import Navbar from "./Pages/nav";
+
 
 const App = () => {
  return (
   <>
   <h1>
-    hwllo
+    This is a simple application with react query and react router 6
   </h1>
   </>
  )
