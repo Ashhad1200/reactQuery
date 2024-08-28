@@ -4,6 +4,7 @@ import Edit from "./Edit";
 import { ProductByCatagoryId } from "./productByCatagoryId";
 import App from "../App";
 import Navbar from "./nav";
+import LoginForm from "./login";
 
 // Define the router
 export const router = createBrowserRouter([
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/catagoryId",
         element: <ProductByCatagoryId />,
+      },
+      {
+        path: "/login",
+        element: <LoginForm />,
       },
     ],
   },

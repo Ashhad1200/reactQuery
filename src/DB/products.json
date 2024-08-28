@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "sku": "s",
       "name": "s",
       "description": "s",
@@ -17,6 +17,15 @@
       "price": 8,
       "isAvailable": true,
       "categoryId": "1"
+    },
+    {
+      "id": "ea9a",
+      "sku": "asd",
+      "name": "asd",
+      "description": "ASDASD",
+      "price": 11,
+      "isAvailable": true,
+      "categoryId": "5"
     }
   ]
 }

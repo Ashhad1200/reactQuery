@@ -3,6 +3,7 @@ import {
   HomeOutlined,
   ShoppingCartOutlined,
   EditOutlined,
+  LoginOutlined
 } from "@ant-design/icons";
 import { Link, Outlet } from "react-router-dom"; // Import Outlet
 
@@ -22,24 +23,27 @@ const Navbar = () => {
             marginRight: "50px",
           }}
         >
-          Testing
+          CURD
         </div>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" icon={<HomeOutlined />}>
+          <Menu.Item key="1" icon={<LoginOutlined />}>
+            <Link to="/login">Login</Link>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<HomeOutlined />}>
             <Link to="/">Home</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
+          <Menu.Item key="3" icon={<ShoppingCartOutlined />}>
             <Link to="/test">All Products</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<ShoppingCartOutlined />}>
+          <Menu.Item key="4" icon={<ShoppingCartOutlined />}>
             <Link to="/catagoryId">Find Products By Category Id</Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<EditOutlined />}>
+          <Menu.Item key="5" icon={<EditOutlined />}>
             <Link to="/edit">Create</Link>
           </Menu.Item>
         </Menu>
       </Header>
-      
+
       {/* Add the Content component to wrap the Outlet */}
       <Content style={{ padding: '24px', minHeight: '280px' }}>
         {/* This is where the child components will be rendered */}
