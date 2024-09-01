@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { Card, Row, Col, Spin, Alert, Button } from "antd";
+import { Card, Row, Col, Spin, Alert } from "antd";
 import useProducts from "../Api/crud";
 
 const Test = () => {
@@ -30,7 +30,15 @@ const Test = () => {
           Toggle Order
         </Button>
       </div> */}
-      <Row gutter={24}>
+      <Row
+        justify="space-around"
+        gutter={{
+          xs: 8,
+          sm: 16,
+          md: 24,
+          lg: 32,
+        }}
+      >
         {data && data.length > 0 ? (
           data.map((product) => (
             <Col className="gutter-row" span={8} key={product.id}>

@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "exampleUser",
+      "email": "a@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "5156",
+      "username": "ashhad",
+      "email": "ashhad@gmail.com",
+      "password": "asdasd"
+    },
+    {
+      "id": "0331",
+      "username": "ashhad1",
+      "email": "ashhad1@gmail.com",
+      "password": "asdasd"
+    },
+    {
+      "id": "cb41",
+      "username": "asdf",
+      "email": "ashhad21@gmail.com",
+      "password": "asd"
+    },
+    {
+      "id": "4080",
+      "username": "Ali",
+      "email": "ali@gmail.com",
+      "password": "asdasd"
+    }
+  ]
+}

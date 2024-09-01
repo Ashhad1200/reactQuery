@@ -9,6 +9,8 @@ const urlp = "http://localhost:3000/products";
 const urlc = "http://localhost:3001/categories";
 // const urlc = 'http://localhost:5222/api/Category';
 
+const urlu = "http://localhost:3002/users";
+
 // const useProducts = (sortBy, order) => {
 //   // Construct the URL with sorting parameters
 //   const urlWithParams = `${urlp}?sortBy=${sortBy}&order=${order}`;
@@ -46,6 +48,41 @@ export const useCatagory = () => {
   });
   return query;
 };
+
+export const useListUsers = () => {
+  const query = useQuery({
+    queryKey: ["users"],
+    queryFn: () => fetch(urlu).then((res) => res.json()), // Wrap the fetch in a function
+    staleTime: Infinity,
+   cacheTime: Infinity,
+  });
+  return query;
+};
+
+export const useRegister = () => {
+  const navigate = useNavigate();
+  const queryClint = useQueryClient();
+  const createUser = useMutation({
+    mutationFn: async ({ user }) => {
+      return await fetch(urlu, {
+        method: "POST",
+        body: JSON.stringify(user),
+      });
+    },
+    onSuccess: () => {
+      navigate("/login");
+      queryClint.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+  return createUser;
+};
+
+export const useLogout = () => {
+  // Remove user data from localStorage
+  localStorage.removeItem('loggedInUser');
+
+};
+
 
 export const useProductsByCategoryId = (categoryId) => {
   const query = useQuery({
