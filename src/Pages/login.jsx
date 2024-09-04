@@ -2,8 +2,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, message, Spin } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useListUsers } from '../Api/crud';
+import { useLogin } from '../Api/auth';
+
 
 const LoginForm = () => {
+  const { mutate: login } = useLogin();
+
   const { data: usersData, isLoading: usersLoading, error: usersError } = useListUsers();
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
@@ -12,6 +16,7 @@ const LoginForm = () => {
     const user = usersData?.find(
       (user) => user.username === values.username && user.password === values.password
     );
+    login(user);
 
     if (user) {
       localStorage.setItem('loggedInUser', JSON.stringify(user));

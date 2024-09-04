@@ -29,6 +29,20 @@
       "username": "Ali",
       "email": "ali@gmail.com",
       "password": "asdasd"
+    },
+    {
+      "id": "5433",
+      "username": "bekomatry",
+      "email": "bekomatry@gmail.com",
+      "password": "asdasd"
+    },
+    {
+      "id": "81a3",
+      "username": "Ali Khan",
+      "email": "alikhan@gmail.com",
+      "password": "asdasd",
+      "phone": "03240678595",
+      "address": "R5"
     }
   ]
 }

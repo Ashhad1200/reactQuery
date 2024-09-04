@@ -8,6 +8,15 @@
       "price": 95,
       "isAvailable": true,
       "categoryId": 2
+    },
+    {
+      "id": "e57c",
+      "sku": "g",
+      "name": "g",
+      "description": "g",
+      "price": 2,
+      "isAvailable": true,
+      "categoryId": "1"
     }
   ]
 }
