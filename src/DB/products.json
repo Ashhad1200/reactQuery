@@ -1,22 +1,40 @@
 {
   "products": [
     {
-      "id": "1",
-      "sku": "AWWUTV",
-      "name": "Unisex Thermal Vest",
-      "description": "",
-      "price": 95,
-      "isAvailable": true,
-      "categoryId": 2
-    },
-    {
-      "id": "e57c",
-      "sku": "g",
-      "name": "g",
-      "description": "g",
-      "price": 2,
+      "id": "44b2",
+      "sku": "asd",
+      "name": "ADS",
+      "description": "ASD",
+      "price": 7,
       "isAvailable": true,
       "categoryId": "1"
+    },
+    {
+      "id": "ff8a",
+      "sku": "asd",
+      "name": "asd",
+      "description": "asd",
+      "price": 7,
+      "isAvailable": true,
+      "categoryId": "2"
+    },
+    {
+      "id": "8f64",
+      "sku": "kk",
+      "name": "kk",
+      "description": "kk",
+      "price": 9,
+      "isAvailable": true,
+      "categoryId": "1"
+    },
+    {
+      "id": "42fd",
+      "sku": "jjujui",
+      "name": "jjujijj",
+      "description": "juuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuunnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddd",
+      "price": 3,
+      "isAvailable": true,
+      "categoryId": "5"
     }
   ]
 }

@@ -10,10 +10,13 @@ import {
 const App = () => {
   // Retrieve user data from localStorage
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const { data: userdetails } = useUserDetails({ id: loggedInUser.id });
 
   // Extract user name if available
-
-  const { data: userdetails } = useUserDetails({ id: loggedInUser.id });
+  if (!loggedInUser) {
+    return <div>Error: User not logged in</div>;
+  }
+  
   console.log(userdetails);
   const user = userdetails?.[0];
   return (

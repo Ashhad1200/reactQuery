@@ -11,8 +11,6 @@ const urlc = "http://localhost:3001/categories";
 
 const urlu = "http://localhost:3003/users";
 
-
-
 export const useListUsers = () => {
   const query = useQuery({
     queryKey: ["users"],
@@ -23,11 +21,12 @@ export const useListUsers = () => {
   return query;
 };
 
-export const useUserDetails = ({id}) => {
+export const useUserDetails = ({ id }) => {
   const query = useQuery({
-    enabled :!! id,
-    queryKey:["userDetails","users",id],
-    queryFn : () => fetch(`${urlu}?id=${id}`).then((response) => response.json()),
+    enabled: !!id,
+    queryKey: ["userDetails", "users", id],
+    queryFn: () =>
+      fetch(`${urlu}?id=${id}`).then((response) => response.json()),
   });
   return query;
 };
@@ -100,4 +99,24 @@ export const useCreateNewProduct = () => {
     mutationKey: ["added"],
   });
   return updateProduct;
+};
+
+export const useDeleteProduct = () => {
+  const queryClient = useQueryClient();
+  const deleteProduct = useMutation({
+    mutationFn: (id) => axios.delete(`${urlp}/${id}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries('products'); // Invalidate the products query
+    },
+  });
+
+  return deleteProduct;
+};
+
+export const useEditProduct = (id) => {
+  return useQuery({
+    queryKey: ['product', id],
+    queryFn: () => axios.get(`${urlp}/${id}`).then(res => res.data),
+    enabled: !!id, // Only fetch if id is available
+  });
 };

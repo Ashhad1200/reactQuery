@@ -1,13 +1,12 @@
 // import { useState } from "react";
-import { Card, Row, Col, Spin, Alert } from "antd";
-import { useProducts } from "../Api/crud";
-
+import { Card, Row, Col, Spin, Alert, Button, Modal } from "antd";
+import { useDeleteProduct, useProducts } from "../Api/crud";
+import { useNavigate } from "react-router-dom";
 
 const Test = () => {
-  // const [sortBy, setSortBy] = useState("name"); // Default sorting column
-  // const [order, setOrder] = useState("asc"); // Default sorting order
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useProducts(/*sortBy, order*/);
-
+  const { mutate, error } = useDeleteProduct();
   if (isLoading) return <Spin size="large" />;
   if (isError)
     return (
@@ -17,36 +16,38 @@ const Test = () => {
         type="error"
       />
     );
+  const showDeleteConfirm = (id) => {
+    Modal.confirm({
+      title: "Are you sure you want to delete this item?",
+      content: "Once deleted, the item cannot be recovered.",
+      okText: "Yes, Delete",
+      okType: "danger",
+      cancelText: "No, Cancel",
+      onOk() {
+        mutate(id);
+        console.log("Deleted :" + id);
+        console.log(error);
+      },
+      onCancel() {
+        console.log("Cancelled"); // Handle cancel action here
+      },
+    });
+  };
 
   return (
     <>
-      {/* <div style={{ marginBottom: "20px" }}>
-        <Button onClick={() => setSortBy("name")} style={{ marginRight: "10px" }}>
-          Sort by Name
-        </Button>
-        <Button onClick={() => setSortBy("price")} style={{ marginRight: "10px" }}>
-          Sort by Price
-        </Button>
-        <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>
-          Toggle Order
-        </Button>
-      </div> */}
-      <Row
-        justify="space-around"
-        gutter={{
-          xs: 8,
-          sm: 16,
-          md: 24,
-          lg: 32,
-        }}
-      >
+      <Row justify="space-around" gutter={{ xs: 24, sm: 16, md: 32, lg: 32 }}>
         {data && data.length > 0 ? (
           data.map((product) => (
-            <Col className="gutter-row" span={8} key={product.id}>
+            <Col className="gutter-row" span={16} key={product.id}>
               <Card
                 title={product.name}
                 extra={<span>Price: ${product.price}</span>}
-                style={{ marginBottom: "20px" }}
+                style={{
+                  marginBottom: "20px",
+                  // maxHeight: "400px",
+                  overflow: "auto",
+                }} // Adjust maxHeight as needed
               >
                 <p>
                   <strong>ID:</strong> {product.id}
@@ -54,6 +55,21 @@ const Test = () => {
                 <p>
                   <strong>SKU:</strong> {product.sku}
                 </p>
+                <p>
+                  <strong>Description:</strong> {product.description}
+                </p>
+
+                <div style={{ marginTop: "10px" }}>
+                  <Button
+                    style={{ marginRight: "3px" }}
+                    onClick={() => navigate(`/edit/${product.id}`)}
+                  >
+                    Edit
+                  </Button>
+                  <Button onClick={() => showDeleteConfirm(product.id)} danger>
+                    Delete
+                  </Button>
+                </div>
               </Card>
             </Col>
           ))

@@ -4,7 +4,7 @@ import { ProductByCatagoryId } from "./productByCatagoryId";
 import App from "../App";
 import Navbar from "./nav";
 import LoginForm from "./login";
-import Edit from "./edit";
+import AddProduct from "./addProduct";
 import RegistrationForm from "./registration";
 import Protected from "./Protected";
 
@@ -22,8 +22,8 @@ export const router = createBrowserRouter([
         element: <Protected Component={Test} />,
       },
       {
-        path: "/edit",
-        element: <Protected Component={Edit} />,
+        path: "/addProduct",
+        element: <Protected Component={AddProduct} />,
       },
       {
         path: "/catagoryId",

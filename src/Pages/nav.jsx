@@ -1,4 +1,4 @@
-import { Button, Layout, Menu, message } from "antd";
+import { Button,Layout, Menu, message } from "antd";
 import {
   HomeOutlined,
   ShoppingCartOutlined,
@@ -49,7 +49,7 @@ const Navbar = () => {
             <Link to="/catagoryId">Find Products By Category Id</Link>
           </Menu.Item>
           <Menu.Item key="4" icon={<EditOutlined />}>
-            <Link to="/edit">Create</Link>
+            <Link to="/addProduct">Create</Link>
           </Menu.Item>
           <Menu.Item key="5" icon={<LoginOutlined />}>
             <Link to="/login">Login</Link>
