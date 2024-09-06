@@ -1,3 +1,5 @@
+Here's an updated version of your README based on the provided details:
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -50,9 +52,7 @@ This project is a simple web application built with React, React Router, Ant Des
    In separate terminals, run:
 
    ```bash
-   json-server --watch db/products.json --port 3000
-   json-server --watch db/categories.json --port 3001
-   json-server --watch db/users.json --port 3003
+npm run dev
    ```
 
 ## Usage
