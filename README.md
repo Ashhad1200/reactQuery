@@ -7,18 +7,17 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-
 ## Description
 
-This project is a simple web application built with React, React Router, and Ant Design. It includes features for user registration, login, and protected routes. The application uses local storage to manage user authentication and provide a personalized experience.
+This project is a simple web application built with React, React Router, Ant Design, and React Query. It includes features for user registration, login, product management, and protected routes. The application uses JSON Server for backend APIs and stores data in JSON files.
 
 ## Features
 
-- **User Registration**: Allows users to create an account with a username, email, and password. Validation is performed to ensure the password and confirmation password match, and checks are done to ensure the username and email are unique.
-- **User Login**: Users can log in with their username and password. Authentication is verified against stored user data.
-- **Protected Routes**: Certain routes are protected and require authentication. Users are redirected to the login page if they attempt to access a protected route without being logged in.
-- **User Logout**: Users can log out, which removes their data from local storage and redirects them to the login page.
-- **Personalized Greeting**: Displays the username of the logged-in user or a default greeting for guests.
+- **User Registration and Login**: Users can register, log in, and access protected routes. Data is managed through local storage.
+- **Product Management**: Users can create, update, and delete products. Products are fetched and displayed using React Query.
+- **Custom Hooks**: We utilize various custom hooks to fetch data using `axios` and the `fetch` API.
+- **Ant Design UI**: We use Ant Design (AntD) for the UI, providing a clean and responsive interface.
+- **JSON Server**: The backend is mocked using JSON Server to simulate a database for products, categories, and users.
 
 ## Installation
 
@@ -28,66 +27,69 @@ This project is a simple web application built with React, React Router, and Ant
    git clone https://github.com/Ashhad1200/reactQuery.git
    ```
 
-3. **Install Dependencies**
+2. **Install Dependencies**
 
    ```bash
    npm install
    ```
 
-4. **Start the Development Server**
+3. **Start the Development Server**
 
-   ```bash```
+   ```bash
    npm run dev
+   ```
 
-   This command will start the Vite development server along with JSON Server instances for products, categories, and users on ports 3000, 3001, and 3002 respectively.
-   Feel free to adjust the ports or paths if needed.
+   This will start the Vite development server. We also use JSON Servers for simulating backend APIs:
+
+   - Products API on port 3000
+   - Categories API on port 3001
+   - Users API on port 3003
+
+4. **Run JSON Server**
+
+   In separate terminals, run:
+
+   ```bash
+   json-server --watch db/products.json --port 3000
+   json-server --watch db/categories.json --port 3001
+   json-server --watch db/users.json --port 3003
    ```
 
 ## Usage
 
-### Registration
+### Registration & Login
 
-- Navigate to the registration page.
-- Fill out the form with your username, email, and password.
-- Submit the form to create a new account.
+- Register as a new user, or log in with existing credentials.  
+- The data is stored using the `axios` API, and user data is stored in `localStorage`.
 
-### Login
+### Product Management
 
-- Navigate to the login page.
-- Enter your username and password.
-- Submit the form to log in.
+- You can create, update, and delete products using custom hooks (`useCreateNewProduct`, `useUpdateProduct`, `useDeleteProduct`).
+- Data is fetched using React Query with either the `fetch` API or `axios`.
 
 ### Protected Routes
 
-- Attempt to access protected routes. If you are not logged in, you will be redirected to the login page.
-
-### Logout
-
-- Click the "Log out" button in the navigation bar to log out.
-
-## Components
-
-- **App**: The main component of the application. Displays a welcome message and the username of the logged-in user.
-- **LoginForm**: The form component for user login. Validates credentials and handles login logic.
-- **RegistrationForm**: The form component for user registration. Validates user input and checks for unique usernames and emails.
-- **Protected**: A higher-order component that ensures users are authenticated before accessing protected routes.
-- **Navbar**: Contains navigation links and a logout button. Provides layout for navigating between different pages.
-
-## Authentication
-
-- **Local Storage**: User data is stored in `localStorage` under the key `loggedInUser`. The user’s username and other details are retrieved from this storage to display personalized content and manage authentication state.
+- Access protected routes after login. If unauthenticated, users are redirected to the login page.
 
 ## Hooks
 
-- **useListUsers**: A custom hook to fetch and return the list of users from an API.
-- **useRegister**: A custom hook to handle user registration via an API.
+- **useListUsers**: Fetches the list of users using the `fetch` API.
+- **useProducts**: Fetches products using the `fetch` API.
+- **useCatagory**: Fetches categories from the API.
+- **useCreateNewProduct**: Allows users to create new products using `axios`.
+- **useUpdateProduct**: Updates product details using `axios`.
+- **useDeleteProduct**: Deletes a product using `axios`.
+- **useRegister**: Handles user registration using `axios`.
+- **useLogin**: Manages user login and authentication using `axios`.
 
 ## Dependencies
 
 - **React**: JavaScript library for building user interfaces.
-- **React Router**: Routing library for handling navigation in the application.
-- **Ant Design**: UI component library for building responsive and styled components.
-- **React Query**: Data fetching library for handling server state and caching.
+- **React Router**: Handles navigation within the application.
+- **Ant Design (AntD)**: UI component library for responsive and styled components.
+- **React Query**: Manages data fetching and server state caching.
+- **Axios**: HTTP client for making API requests.
+- **JSON Server**: Mock server for simulating APIs and storing data.
 
 ## Contributing
 
