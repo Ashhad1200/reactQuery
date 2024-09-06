@@ -47,14 +47,6 @@ This project is a simple web application built with React, React Router, Ant Des
    - Categories API on port 3001
    - Users API on port 3003
 
-4. **Run JSON Server**
-
-   In separate terminals, run:
-
-   ```bash
-npm run dev
-   ```
-
 ## Usage
 
 ### Registration & Login
