@@ -115,8 +115,24 @@ export const useDeleteProduct = () => {
 
 export const useEditProduct = (id) => {
   return useQuery({
-    queryKey: ['product', id],
-    queryFn: () => axios.get(`${urlp}/${id}`).then(res => res.data),
-    enabled: !!id, // Only fetch if id is available
+    queryKey: ["product", id],
+    queryFn: async () => {
+      const { data } = await axios.get(`${urlp}/${id}`);
+      return data;
+    },
+  });
+};
+
+export const useUpdateProduct = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (updatedProduct) => {
+      const { id, ...data } = updatedProduct;
+      return await axios.put(`${urlp}/${id}`, data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("products");
+    },
   });
 };

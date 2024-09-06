@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { Card, Row, Col, Spin, Alert, Button, Modal } from "antd";
+import { Card, Row, Col, Spin, Alert, Button, Modal, FloatButton } from "antd";
 import { useDeleteProduct, useProducts } from "../Api/crud";
 import { useNavigate } from "react-router-dom";
 
@@ -62,7 +62,7 @@ const Test = () => {
                 <div style={{ marginTop: "10px" }}>
                   <Button
                     style={{ marginRight: "3px" }}
-                    onClick={() => navigate(`/edit/${product.id}`)}
+                    onClick={() => navigate(`/editProduct/${product.id}`)}
                   >
                     Edit
                   </Button>
@@ -79,6 +79,7 @@ const Test = () => {
           </Col>
         )}
       </Row>
+      <FloatButton.BackTop />
     </>
   );
 };

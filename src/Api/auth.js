@@ -47,7 +47,6 @@ export const useLogin = () => {
   });
 };
 
-
 export const useAuthMe = () =>
   useQuery({
     queryKey: ['auth'],
@@ -60,4 +59,28 @@ export const useAuthMe = () =>
 
 export const useLogout = () => {
   localStorage.removeItem('loggedInUser');
+};
+
+export const useEditUserProfile = (id) => {
+  return useQuery({
+    queryKey: ["users", id],
+    queryFn: async () => {
+      const { data } = await axios.get(`${urlu}/${id}`);
+      return data;
+    },
+  });
+};
+
+export const useUpdateUserProfile = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (updatedUser) => {
+      const { id, ...data } = updatedUser;
+      return await axios.put(`${urlu}/${id}`, data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("users");
+    },
+  });
 };

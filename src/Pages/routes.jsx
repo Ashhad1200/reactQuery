@@ -7,6 +7,9 @@ import LoginForm from "./login";
 import AddProduct from "./addProduct";
 import RegistrationForm from "./registration";
 import Protected from "./Protected";
+import EditProduct from "./editProduct";
+import EditUserProfile from "./editUserProfile";
+
 
 // Define the router
 export const router = createBrowserRouter([
@@ -36,6 +39,14 @@ export const router = createBrowserRouter([
       {
         path: "/registration",
         element: <RegistrationForm />,
+      },
+      {
+        path: "/editProduct/:id",
+        element: <EditProduct />,
+      },
+      {
+        path: "/editUserProfile/:id",
+        element: <EditUserProfile />,
       },
     ],
   },

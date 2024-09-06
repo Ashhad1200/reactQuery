@@ -40,7 +40,7 @@ const Navbar = () => {
         </div>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1" icon={<HomeOutlined />}>
-            <Link to="/">Home</Link>
+            <Link to="/">Profile</Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
             <Link to="/test">All Products</Link>

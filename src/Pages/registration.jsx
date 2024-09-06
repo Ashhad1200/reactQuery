@@ -97,7 +97,7 @@ const RegistrationForm = () => {
                   type: "text",
                   message: "The input is not a valid phone Number!",
                 },
-                { required: true, message: "Please input your Phone number!" },
+                {  message: "Please input your Phone number!" },
               ]}
             >
               <Input prefix={<PhoneOutlined />} placeholder="Phone" />
@@ -107,7 +107,7 @@ const RegistrationForm = () => {
               name="address"
               rules={[
                 { type: "text", message: "The input is not a valid Address!" },
-                { required: true, message: "Please input your Address!" },
+                { message: "Please input your Address!" },
               ]}
             >
               <Input prefix={<HomeOutlined />} placeholder="Adress" />

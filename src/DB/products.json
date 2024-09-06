@@ -1,13 +1,11 @@
 {
   "products": [
     {
-      "id": "44b2",
-      "sku": "asd",
-      "name": "ADS",
-      "description": "ASD",
-      "price": 7,
+      "name": "updated Product",
+      "description": "new product dis",
+      "price": "556",
       "isAvailable": true,
-      "categoryId": "1"
+      "id": "44b2"
     },
     {
       "id": "ff8a",
@@ -28,13 +26,13 @@
       "categoryId": "1"
     },
     {
-      "id": "42fd",
-      "sku": "jjujui",
-      "name": "jjujijj",
-      "description": "juuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuunnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddd",
-      "price": 3,
+      "id": "e053",
+      "sku": "g",
+      "name": "g",
+      "description": "g",
+      "price": 77,
       "isAvailable": true,
-      "categoryId": "5"
+      "categoryId": "1"
     }
   ]
 }

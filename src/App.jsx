@@ -1,22 +1,24 @@
 import { useUserDetails } from "./Api/crud";
-import { Card, Avatar, Row, Col, Spin } from "antd";
+import { Card, Avatar, Row, Col, Button } from "antd";
 import {
   UserOutlined,
   MailOutlined,
   PhoneOutlined,
   HomeOutlined,
+  EditOutlined,
+  PlusOutlined
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const App = () => {
   // Retrieve user data from localStorage
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const { data: userdetails } = useUserDetails({ id: loggedInUser.id });
 
-  // Extract user name if available
-  if (!loggedInUser) {
-    return <div>Error: User not logged in</div>;
-  }
-  
+  // // Extract user name if available
+  // if (!loggedInUser) {
+  //   return <div>Error: User not logged in</div>;
+  // }
+  const { data: userdetails } = useUserDetails({ id: loggedInUser.id });
   console.log(userdetails);
   const user = userdetails?.[0];
   return (
@@ -30,6 +32,11 @@ const App = () => {
         }}
       >
         <Card style={{ width: 300 }}>
+          <Row justify="end">
+            <Link to={`/editUserProfile/${user?.id}`}>
+              <EditOutlined />
+            </Link>
+          </Row>{" "}
           <Row justify="center">
             <Avatar size={64} icon={<UserOutlined />} />
           </Row>
@@ -39,13 +46,30 @@ const App = () => {
           <Row>
             <Col span={24}>
               <p>
-                <MailOutlined /> : {user?.email || <Spin size="small" />}
+                <MailOutlined /> :{" "}
+                {user?.email || (
+                  <Link to={`/editUserProfile/${user?.id}`}>
+                    {" "}
+                    <Button><PlusOutlined/></Button>
+                  </Link>
+                )}
               </p>
               <p>
-                <PhoneOutlined /> : {user?.phone || <Spin size="small" />}
+                <PhoneOutlined /> :{" "}
+                {user?.phone || (
+                  <Link to={`/editUserProfile/${user?.id}`}>
+                    <Button><PlusOutlined/></Button>
+                  </Link>
+                )}
               </p>
               <p>
-                <HomeOutlined /> : {user?.address || <Spin size="small" />}
+                <HomeOutlined /> :{" "}
+                {user?.address || (
+                  <Link to={`/editUserProfile/${user?.id}`}>
+                    {" "}
+                    <Button><PlusOutlined/></Button>
+                  </Link>
+                )}
               </p>
             </Col>
           </Row>

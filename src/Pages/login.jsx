@@ -1,29 +1,33 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Form, Input, Button, message, Spin } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { useListUsers } from '../Api/crud';
-import { useLogin } from '../Api/auth';
-
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Input, Button, message, Spin } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useListUsers } from "../Api/crud";
+import { useLogin } from "../Api/auth";
 
 const LoginForm = () => {
   const { mutate: login } = useLogin();
 
-  const { data: usersData, isLoading: usersLoading, error: usersError } = useListUsers();
+  const {
+    data: usersData,
+    isLoading: usersLoading,
+    error: usersError,
+  } = useListUsers();
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
 
   const onFinish = (values) => {
     const user = usersData?.find(
-      (user) => user.username === values.username && user.password === values.password
+      (user) =>
+        user.username === values.username && user.password === values.password 
     );
     login(user);
 
     if (user) {
-      localStorage.setItem('loggedInUser', JSON.stringify(user));
-      messageApi.success('Login successful!');
-      navigate('/');
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      messageApi.success("Login successful!");
+      navigate("/");
     } else {
-      messageApi.error('Invalid username or password.');
+      messageApi.error("Invalid username or password.");
     }
   };
 
@@ -43,22 +47,30 @@ const LoginForm = () => {
         className="login-form"
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        style={{ maxWidth: '300px', margin: '0 auto', padding: '50px' }}
+        style={{ maxWidth: "300px", margin: "0 auto", padding: "50px" }}
       >
         <Form.Item
           name="username"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
+          rules={[{ required: true, message: "Please input your Username!" }]}
         >
           <Input prefix={<UserOutlined />} placeholder="Username" />
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
+          rules={[{ required: true, message: "Please input your Password!" }]}
         >
-          <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
+          <Input
+            prefix={<LockOutlined />}
+            type="password"
+            placeholder="Password"
+          />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+          >
             Log in
           </Button>
           <span> Or </span>
