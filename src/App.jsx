@@ -9,20 +9,33 @@ import {
   PlusOutlined
 } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const App = () => {
   const navigate = useNavigate();
 
   // Retrieve user data from localStorage
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  
-  // // Extract user name if available
-  if (!loggedInUser) {
-    navigate("/login");
-  }
-  const { data: userdetails } = useUserDetails({ id: loggedInUser.id });
+
+  // Always call hooks at the top
+  const { data: userdetails } = useUserDetails({
+    id: loggedInUser?.id || null, // Pass a fallback value if loggedInUser is null
+  });
 
   const user = userdetails?.[0];
+
+  // Handle navigation after hook execution
+  useEffect(() => {
+    if (!loggedInUser || !loggedInUser.id) {
+      navigate("/login");
+    }
+  }, [loggedInUser, navigate]);
+
+  // Conditional rendering based on user data
+  if (!loggedInUser || !loggedInUser.id) {
+    return null; // Prevent rendering if user is not found
+  }
+
   return (
     <>
       <div
@@ -30,7 +43,6 @@ const App = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          // height: "100vh", // Full viewport height to center vertically
         }}
       >
         <Card style={{ width: 300 }}>
@@ -52,7 +64,7 @@ const App = () => {
                 {user?.email || (
                   <Link to={`/editUserProfile/${user?.id}`}>
                     {" "}
-                    <Button><PlusOutlined/></Button>
+                    <Button><PlusOutlined /></Button>
                   </Link>
                 )}
               </p>
@@ -60,7 +72,7 @@ const App = () => {
                 <PhoneOutlined /> :{" "}
                 {user?.phone || (
                   <Link to={`/editUserProfile/${user?.id}`}>
-                    <Button><PlusOutlined/></Button>
+                    <Button><PlusOutlined /></Button>
                   </Link>
                 )}
               </p>
@@ -69,7 +81,7 @@ const App = () => {
                 {user?.address || (
                   <Link to={`/editUserProfile/${user?.id}`}>
                     {" "}
-                    <Button><PlusOutlined/></Button>
+                    <Button><PlusOutlined /></Button>
                   </Link>
                 )}
               </p>

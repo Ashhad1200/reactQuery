@@ -1,3 +1,11 @@
 {
-  "products": []
+  "products": [
+    {
+      "name": "asdasd",
+      "description": "asdasd",
+      "price": 123,
+      "isAvailable": false,
+      "id": "a2e2"
+    }
+  ]
 }
