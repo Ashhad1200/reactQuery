@@ -8,18 +8,20 @@ import {
   EditOutlined,
   PlusOutlined
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const App = () => {
+  const navigate = useNavigate();
+
   // Retrieve user data from localStorage
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
+  
   // // Extract user name if available
-  // if (!loggedInUser) {
-  //   return <div>Error: User not logged in</div>;
-  // }
+  if (!loggedInUser) {
+    navigate("/login");
+  }
   const { data: userdetails } = useUserDetails({ id: loggedInUser.id });
-  console.log(userdetails);
+
   const user = userdetails?.[0];
   return (
     <>
