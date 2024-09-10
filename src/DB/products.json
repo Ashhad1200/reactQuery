@@ -1,38 +1,3 @@
 {
-  "products": [
-    {
-      "name": "updated Product",
-      "description": "new product dis",
-      "price": "556",
-      "isAvailable": true,
-      "id": "44b2"
-    },
-    {
-      "id": "ff8a",
-      "sku": "asd",
-      "name": "asd",
-      "description": "asd",
-      "price": 7,
-      "isAvailable": true,
-      "categoryId": "2"
-    },
-    {
-      "id": "8f64",
-      "sku": "kk",
-      "name": "kk",
-      "description": "kk",
-      "price": 9,
-      "isAvailable": true,
-      "categoryId": "1"
-    },
-    {
-      "id": "e053",
-      "sku": "g",
-      "name": "g",
-      "description": "g",
-      "price": 77,
-      "isAvailable": true,
-      "categoryId": "1"
-    }
-  ]
+  "products": []
 }

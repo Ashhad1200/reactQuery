@@ -7,10 +7,12 @@
       "password": "password"
     },
     {
-      "id": "5156",
       "username": "ashhad",
       "email": "ashhad@gmail.com",
-      "password": "asdasd"
+      "password": "asdasd",
+      "phone": "03240678595",
+      "address": "R5",
+      "id": "5156"
     },
     {
       "id": "0331",
